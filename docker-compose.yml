@@ -1,0 +1,7 @@
+services:
+  web:
+    container_name: web-1
+    build: .
+    ports:
+      - "9988:80"
+    restart: always
