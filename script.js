@@ -181,28 +181,13 @@ window.addEventListener("resize", updatePricingBars);
 updatePricingBars();
 
 if (operationsCube) {
-  const explodeCube = () => operationsCube.classList.add("is-exploded");
-  const settleCube = () => operationsCube.classList.remove("is-exploded");
+  const toggleCube = () => operationsCube.classList.toggle("is-exploded");
 
-  operationsCube.addEventListener("pointerdown", (event) => {
-    operationsCube.setPointerCapture?.(event.pointerId);
-    explodeCube();
-  });
-
-  operationsCube.addEventListener("pointerup", (event) => {
-    operationsCube.releasePointerCapture?.(event.pointerId);
-    settleCube();
-  });
-
-  operationsCube.addEventListener("pointercancel", settleCube);
-  operationsCube.addEventListener("pointerleave", settleCube);
-  operationsCube.addEventListener("lostpointercapture", settleCube);
-  operationsCube.addEventListener("blur", settleCube);
+  operationsCube.addEventListener("click", toggleCube);
   operationsCube.addEventListener("keydown", (event) => {
     if (event.key === " " || event.key === "Enter") {
       event.preventDefault();
-      explodeCube();
+      toggleCube();
     }
   });
-  operationsCube.addEventListener("keyup", settleCube);
 }
